@@ -1,11 +1,38 @@
 <!DOCTYPE html>
 <html dir="rtl" lang="ar">
 <head>
+    <meta charset="UTF-8">
     <title>IT Portal - Al-Qasemi</title>
-    <style>body { font-family: sans-serif; text-align: center; padding: 50px; background-color: #f4f4f4; }</style>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; background-color: #f4f4f4; }
+        .header { background-color: #001f3f; color: white; padding: 20px; text-align: center; border-bottom: 5px solid #78bc42; }
+        .hero { background-color: #78bc42; color: white; padding: 40px; text-align: center; }
+        .container { padding: 20px; display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; }
+        .card { background: white; padding: 20px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); width: 250px; text-align: center; }
+        .btn { background-color: #001f3f; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px; display: inline-block; margin-top: 10px; }
+    </style>
 </head>
 <body>
-    <h1>مرحباً بكم في بوابة IT أكاديمية القاسمي</h1>
-    <p>هذه البوابة تعمل الآن داخل حاوية Docker!</p>
+    <div class="header">
+        <h1>أكاديمية القاسمي - بوابة تكنولوجيا المعلومات</h1>
+    </div>
+    <div class="hero">
+        <h2>مرحباً بكم في نظام DevOps التعليمي</h2>
+        <p>هذا الموقع تم بناؤه ونشره تلقائياً باستخدام Docker و GitHub Actions</p>
+    </div>
+    <div class="container">
+        <div class="card">
+            <h3>خدمات الطلاب</h3>
+            <a href="#" class="btn">دخول</a>
+        </div>
+        <div class="card">
+            <h3>البريد الإلكتروني</h3>
+            <a href="#" class="btn">دخول</a>
+        </div>
+        <div class="card">
+            <h3>نظام Moodle</h3>
+            <a href="#" class="btn">دخول</a>
+        </div>
+    </div>
 </body>
 </html>
