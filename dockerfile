@@ -1,8 +1,9 @@
-# استخدام نسخة مستقرة من Nginx
+# استخدام نسخة nginx خفيفة
 FROM nginx:alpine
 
-# نسخ ملف الواجهة إلى مجلد الويب الافتراضي للسيرفر
-COPY index.html /usr/share/nginx/html/index.html
+# نسخ كافة ملفات المشروع إلى المسار الافتراضي لـ nginx
+COPY . /usr/share/nginx/html
 
 # فتح المنفذ 80
 EXPOSE 80
+
