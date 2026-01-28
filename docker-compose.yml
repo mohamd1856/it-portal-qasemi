@@ -1,0 +1,23 @@
+version: '3.8'
+services:
+  # שרת האפליקציה (Backend + Frontend)
+  web:
+    build: .
+    ports:
+      - "8080:5000"
+    depends_on:
+      - db
+    environment:
+      - MONGO_URI=mongodb://db:27017/it_portal
+
+  # מסד הנתונים
+  db:
+    image: mongo:latest
+    container_name: mongodb_container
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+
+volumes:
+  mongo-data:
