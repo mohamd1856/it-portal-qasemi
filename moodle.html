@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Moodle | פתיחת קריאה</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="form-container">
+        <h2>טופס פתיחת קריאה - Moodle</h2>
+        <div class="form-group">
+            <label>שם מלא:*</label>
+            <input type="text" id="name" placeholder="הקלד שם מלא">
+        </div>
+        <div class="form-group">
+            <label>אימייל:*</label>
+            <input type="email" id="email" placeholder="example@qsm.ac.il">
+        </div>
+        <div class="form-group">
+            <label>תיאור התקלה:*</label>
+            <textarea id="desc" rows="4" placeholder="פרט את הבעיה כאן..."></textarea>
+        </div>
+        <button class="submit-btn" onclick="sendTicket()">פתיחת קריאה</button>
+        <br>
+        <a href="index.html" class="back-link">חזרה לדף הבית</a>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

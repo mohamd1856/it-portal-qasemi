@@ -1,47 +1,33 @@
-// وظيفة فتح الخدمات في صفحة خارجية جديدة
-function openService(url) {
-    window.open(url, '_blank');
-}
+function sendTicket() {
+    // 1. جلب البيانات من الحقول
+    const name = document.getElementById('name').value;
+    const userEmail = document.getElementById('email').value;
+    const desc = document.getElementById('desc').value;
 
-// وظيفة إرسال الإيميل لمحمد
-function sendEmail() {
-    const userType = document.getElementById('user-type').value;
-    const name = document.getElementById('contact-name').value;
-    const email = document.getElementById('user-email').value;
-    const desc = document.getElementById('description').value;
-
-    if (!name || !email || !desc) {
-        alert("נא למלא את כל השדות המסומנים ב-*");
+    // 2. التحقق من أن الحقول ليست فارغة
+    if (!name || !userEmail || !desc) {
+        alert("אנא מלא את כל השדות לפני השליחה");
         return;
     }
 
-    const recipient = "mohamd@hoteliers.co.il"; 
-    const subject = `קריאה חדשה: ${userType} - ${name}`;
-    const body = `פרטי הפנייה:\n` +
-                 `סוג פונה: ${userType}\n` +
-                 `שם איש קשר: ${name}\n` +
-                 `מייל לחזרה: ${email}\n` +
-                 `תיأور التקלה: ${desc}`;
-
-    window.location.href = `mailto:${recipient}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-}
-
-// وظيفة الـ Chatbot المدمجة
-function askBot() {
-    const input = document.getElementById('chat-input');
-    const box = document.getElementById('chat-box');
+    // 3. إعداد تفاصيل البريد الإلكتروني
+    const adminEmail = "mohamd@hoteliers.co.il";
+    const subject = encodeURIComponent(`פנייה חדשה מפורטל ה-IT: ${name}`);
     
-    if (input.value.trim() !== "") {
-        box.innerHTML += `<p><strong>אתה:</strong> ${input.value}</p>`;
-        
-        setTimeout(() => {
-            box.innerHTML += `<p style="color: #6c63ff;"><strong>בוט:</strong> אני בודק את הנושא מול צוות ה-IT, אנא המתן...</p>`;
-            box.scrollTop = box.scrollHeight;
-        }, 600);
+    // تنسيق محتوى الرسالة
+    const body = encodeURIComponent(
+        `פרטי פנייה חדשה:\n` +
+        `------------------\n` +
+        `שם מלא: ${name}\n` +
+        `אימייל לחזרה: ${userEmail}\n` +
+        `תיאור התקלה:\n${desc}\n` +
+        `------------------\n` +
+        `נשלח דרך פורטל ה-IT המכללתי.`
+    );
 
-        input.value = "";
-        box.scrollTop = box.scrollHeight;
-    }
+    // 4. تنفيذ أمر الإرسال (فتح برنامج البريد)
+    window.location.href = `mailto:${adminEmail}?subject=${subject}&body=${body}`;
+
+    // 5. رسالة تأكيد للمستخدم
+    alert("מעביר אותך לשליחת המייל...");
 }
-
-

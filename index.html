@@ -3,59 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>מערכת IT - מכללת אלקאסמי</title>
+    <title>IT Portal | الصفحة الرئيسية</title>
     <link rel="stylesheet" href="style.css">
-    <style>
-        .header-nav { display: flex; justify-content: center; gap: 20px; padding: 20px; background: #f8f9fa; border-bottom: 1px solid #ddd; }
-        .nav-btn { padding: 12px 25px; cursor: pointer; border-radius: 8px; border: 1px solid #6c63ff; background: white; color: #6c63ff; font-weight: bold; transition: 0.3s; }
-        .nav-btn:hover { background: #6c63ff; color: white; }
-        .form-container { max-width: 500px; margin: 30px auto; padding: 30px; border-radius: 15px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); background: white; }
-        .form-input { width: 100%; padding: 12px; margin: 10px 0; border-radius: 8px; border: 1px solid #ccc; box-sizing: border-box; font-family: inherit; }
-        #chat-section { max-width: 500px; margin: 20px auto; border: 2px solid #6c63ff; border-radius: 15px; padding: 15px; background: #fff; }
-        #chat-box { height: 180px; overflow-y: auto; background: #fcfcfc; padding: 10px; margin-bottom: 10px; border-radius: 8px; border: 1px solid #eee; }
-    </style>
 </head>
 <body>
-    <div class="header-nav">
-        <button class="nav-btn" onclick="openService('https://moodle.qsm.ac.il/')">منظومة Moodle</button>
-        <button class="nav-btn" onclick="openService('https://qsm.ac.il/')">الخدمات الذاتية</button>
-        <button class="nav-btn" onclick="openService('https://outlook.office.com/')">البريد الإلكتروني</button>
+    <div class="nav-container">
+        <a href="moodle.html" class="nav-btn">מעבר למערכת Moodle</a>
     </div>
 
-    <div class="form-container">
-        <h2 style="text-align: center; color: #333;">טופס פתיחת קריאה</h2>
-        
-        <label>סוג פונה:*</label>
-        <select id="user-type" class="form-input">
-            <option value="מורה">מורה</option>
-            <option value="סטודנט">סטודנט</option>
-            <option value="אורח">אחר</option>
-        </select>
-
-        <label>איش קשר:*</label>
-        <input type="text" id="contact-name" class="form-input" placeholder="הקלד שם מלא">
-
-        <label>כתובת מייל:*</label>
-        <input type="email" id="user-email" class="form-input" placeholder="email@example.com">
-
-        <label>תיאור התקלה:*</label>
-        <textarea id="description" class="form-input" rows="4" placeholder="פרט את הבעיה هنا..."></textarea>
-
-        <button onclick="sendEmail()" style="width: 100%; padding: 15px; background: #6c63ff; color: white; border: none; border-radius: 8px; cursor: pointer; font-size: 16px; font-weight: bold;">פתיחת קריאה</button>
-    </div>
-
-    <div id="chat-section">
-        <h3 style="margin: 0 0 10px 0; color: #6c63ff;">IT Support Chat</h3>
+    <div class="chat-section">
+        <div class="chat-header">IT Support Assistant</div>
         <div id="chat-box">
-            <p style="color: #555;"><strong>בוט:</strong> أهلاً بك! كيف يمكنني مساعدتك اليوم؟</p>
+            <div class="bot-msg">שלום! אני הבוט של IT. איך אוכל לעזור לך היום?</div>
         </div>
-        <div style="display: flex; gap: 8px;">
-            <input type="text" id="chat-input" placeholder="שאל אותי משהו..." style="flex: 1; padding: 10px; border-radius: 5px; border: 1px solid #ddd;">
-            <button onclick="askBot()" style="padding: 10px 20px; background: #6c63ff; color: white; border: none; border-radius: 5px; cursor: pointer;">שלח</button>
+        <div class="input-area">
+            <input type="text" id="user-input" placeholder="הקלד הודעה..." onkeypress="handleKeyPress(event)">
+            <button onclick="askBot()">></button>
         </div>
     </div>
 
     <script src="script.js"></script>
 </body>
 </html>
-
