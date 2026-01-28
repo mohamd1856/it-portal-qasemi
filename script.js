@@ -1,33 +1,70 @@
-function sendTicket() {
-    // 1. جلب البيانات من الحقول
-    const name = document.getElementById('name').value;
-    const userEmail = document.getElementById('email').value;
-    const desc = document.getElementById('desc').value;
+// פונקציה להצגת הודעות
+function appendMessage(sender, text) {
+    const chatBox = document.getElementById('chat-box');
+    if (!chatBox) return;
 
-    // 2. التحقق من أن الحقول ليست فارغة
-    if (!name || !userEmail || !desc) {
-        alert("אנא מלא את כל השדות לפני השליחה");
+    const msgDiv = document.createElement('div');
+    msgDiv.className = sender === 'user' ? 'user-msg' : 'bot-msg';
+    msgDiv.innerText = text;
+    
+    chatBox.appendChild(msgDiv);
+    chatBox.scrollTop = chatBox.scrollHeight; // גלילה אוטומטית למטה
+}
+
+// פונקציית השאלה המרכזית
+async function askBot() {
+    const inputField = document.getElementById('user-input');
+    const userText = inputField.value.trim();
+
+    if (!userText) return;
+
+    // הצגת הודעת המשתמש
+    appendMessage('user', userText);
+    inputField.value = "";
+
+    try {
+        const response = await fetch('data.json');
+        const data = await response.json();
+        
+        let botResponse = "מצטער, אני לא מכיר את הנושא הזה. נסה לשאול על Moodle או WiFi.";
+
+        // חיפוש תשובה חכם
+        for (let item of data.knowledge_base) {
+            if (item.keywords.some(key => userText.toLowerCase().includes(key.toLowerCase()))) {
+                botResponse = item.answer;
+                break;
+            }
+        }
+
+        setTimeout(() => {
+            appendMessage('bot', botResponse);
+        }, 500);
+
+    } catch (error) {
+        console.error("Error loading data:", error);
+        appendMessage('bot', "חלה שגיאה בגישה לנתונים. וודא שקובץ data.json קיים.");
+    }
+}
+
+// --- הפעלת כפתורים ומקלדת ---
+
+// האזנה לכפתור השליחה
+document.getElementById('send-btn')?.addEventListener('click', askBot);
+
+// האזנה למקש Enter
+document.getElementById('user-input')?.addEventListener('keypress', function (e) {
+    if (e.key === 'Enter') {
+        askBot();
+    }
+});
+
+// פונקציה לטופס המודל (moodle.html)
+function sendTicket() {
+    const name = document.getElementById('name')?.value;
+    if (!name) {
+        alert("אנא מלא שם מלא");
         return;
     }
-
-    // 3. إعداد تفاصيل البريد الإلكتروني
-    const adminEmail = "mohamd@hoteliers.co.il";
-    const subject = encodeURIComponent(`פנייה חדשה מפורטל ה-IT: ${name}`);
-    
-    // تنسيق محتوى الرسالة
-    const body = encodeURIComponent(
-        `פרטי פנייה חדשה:\n` +
-        `------------------\n` +
-        `שם מלא: ${name}\n` +
-        `אימייל לחזרה: ${userEmail}\n` +
-        `תיאור התקלה:\n${desc}\n` +
-        `------------------\n` +
-        `נשלח דרך פורטל ה-IT המכללתי.`
-    );
-
-    // 4. تنفيذ أمر الإرسال (فتح برنامج البريد)
-    window.location.href = `mailto:${adminEmail}?subject=${subject}&body=${body}`;
-
-    // 5. رسالة تأكيد للمستخدم
-    alert("מעביר אותך לשליחת המייל...");
+    alert("הפנייה נשלחה בהצלحة! (סימולציה)");
+    window.location.href = "index.html";
 }
