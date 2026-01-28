@@ -1,4 +1,9 @@
-// פונקציית שליחת מייל
+// وظيفة فتح الخدمات في صفحة خارجية جديدة
+function openService(url) {
+    window.open(url, '_blank');
+}
+
+// وظيفة إرسال الإيميل لمحمد
 function sendEmail() {
     const userType = document.getElementById('user-type').value;
     const name = document.getElementById('contact-name').value;
@@ -6,7 +11,7 @@ function sendEmail() {
     const desc = document.getElementById('description').value;
 
     if (!name || !email || !desc) {
-        alert("נא למלא את כל השדות!");
+        alert("נא למלא את כל השדות המסומנים ב-*");
         return;
     }
 
@@ -14,28 +19,29 @@ function sendEmail() {
     const subject = `קריאה חדשה: ${userType} - ${name}`;
     const body = `פרטי הפנייה:\n` +
                  `סוג פונה: ${userType}\n` +
-                 `שם: ${name}\n` +
+                 `שם איש קשר: ${name}\n` +
                  `מייל לחזרה: ${email}\n` +
-                 `תיאור: ${desc}`;
+                 `תיأور التקלה: ${desc}`;
 
     window.location.href = `mailto:${recipient}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 }
 
-// פונקציית צ'אט בוט
+// وظيفة الـ Chatbot المدمجة
 function askBot() {
     const input = document.getElementById('chat-input');
     const box = document.getElementById('chat-box');
     
     if (input.value.trim() !== "") {
-        box.innerHTML += `<p style="margin: 5px 0;"><strong>אתה:</strong> ${input.value}</p>`;
+        box.innerHTML += `<p><strong>אתה:</strong> ${input.value}</p>`;
         
-        // תשובת בוט אוטומטית
         setTimeout(() => {
-            box.innerHTML += `<p style="margin: 5px 0; color: #4CAF50;"><strong>בוט:</strong> אני מעבד את הבקשה שלך, אנא המתן...</p>`;
+            box.innerHTML += `<p style="color: #6c63ff;"><strong>בוט:</strong> אני בודק את הנושא מול צוות ה-IT, אנא המתן...</p>`;
             box.scrollTop = box.scrollHeight;
-        }, 500);
+        }, 600);
 
         input.value = "";
         box.scrollTop = box.scrollHeight;
     }
 }
+
+
