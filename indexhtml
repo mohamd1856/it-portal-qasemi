@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <title>بوابة IT - أكاديمية القاسمي</title>
+    <style>
+body { font-family: sans-serif; margin: 0; background: #fdfdfd; }
+        header { background: #001f3f; color: white; padding: 1rem; text-align: center; border-bottom: 6px solid #78bc42; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; padding: 40px; }
+        .card { border: 1px solid #ddd; padding: 20px; text-align: center; border-radius: 12px; background: white; box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
+        .btn { background: #001f3f; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px; display: inline-block; margin-top: 10px; }
+#chat-widget { position: fixed; bottom: 20px; left: 20px; z-index: 1000; }
+        #chat-btn { background: #78bc42; color: white; border: none; width: 60px; height: 60px; border-radius: 50%; cursor: pointer; font-size: 24px; box-shadow: 0 4px 10px rgba(0,0,0,0.3); }
+        #chat-box { display: none; width: 300px; height: 400px; background: white; border: 1px solid #ddd; border-radius: 10px; flex-direction: column; box-shadow: 0 5px 15px rgba(0,0,0,0.2); position: absolute; bottom: 70px; left: 0; }
+        .chat-h { background: #001f3f; color: white; padding: 15px; border-radius: 10px 10px 0 0; }
+#chat-widget { position: fixed; bottom: 20px; left: 20px; z-index: 1000; }
+        #chat-btn { background: #78bc42; color: white; border: none; width: 60px; height: 60px; border-radius: 50%; cursor: pointer; font-size: 24px; box-shadow: 0 4px 10px rgba(0,0,0,0.3); }
+        #chat-box { display: none; width: 300px; height: 400px; background: white; border: 1px solid #ddd; border-radius: 10px; flex-direction: column; box-shadow: 0 5px 15px rgba(0,0,0,0.2); position: absolute; bottom: 70px; left: 0; }
+        .chat-h { background: #001f3f; color: white; padding: 15px; border-radius: 10px 10px 0 0; }
+#messages { flex: 1; padding: 10px; overflow-y: auto; font-size: 14px; }
+        .chat-i { border-top: 1px solid #ddd; display: flex; }
+        .chat-i input { flex: 1; border: none; padding: 10px; outline: none; }
+        .chat-i button { background: #78bc42; color: white; border: none; padding: 10px; cursor: pointer; }
+</style>
+</head>
+<body>
+    <header><h1>أكاديمية القاسمي - بوابة تكنولوجيا المعلومات</h1></header>
+<div class="grid">
+        <div class="card"><h3>منظومة Moodle</h3><a href="#" class="btn">دخول</a></div>
+        <div class="card"><h3>البريد الإلكتروني</h3><a href="#" class="btn">دخول</a></div>
+        <div class="card"><h3>الخدمات الذاتية</h3><a href="#" class="btn">دخول</a></div>
+    </div>
+iv id="chat-widget">
+        <button id="chat-btn" onclick="toggleChat()"></button>
+        <div id="chat-box" style="display: none;">
+            <div class="chat-h">Ø§Ù�Ø¯Ø¹Ù� Ø§Ù�Ù�Ù�Ù� Ø§Ù�Ø°Ù�Ù�</div>
+            <div id="messages">Ù�Ø±Ø­Ø¨Ø§Ù�! Ø£Ù�Ø§ Ù�Ø³Ø§Ø¹Ø¯Ù� Ø§Ù�ØªÙ�Ù�Ù�Ø� Ù�Ù�Ù� Ø£Ø³Ø§Ø¹Ø¯Ù� Ø§Ù�Ù�Ù�Ù�Ø�</div>
+            <div class="chat-i">
+
+iv id="chat-widget">
+        <button id="chat-btn" onclick="toggleChat()"></button>
+        <div id="chat-box" style="display: none;">
+            <div class="chat-h">الدعم الفني الذكي</div>
+            <div id="messages">مرحباً! أنا مساعدك التقني، كيف أساعدك اليوم؟</div>
+            <div class="chat-i">
+
+iv id="chat-widget">
+        <button id="chat-btn" onclick="toggleChat()"></button>
+        <div id="chat-box" style="display: none;">
+            <div class="chat-h">Ø§Ù�Ø¯Ø¹Ù� Ø§Ù�Ù�Ù�Ù� Ø§Ù�Ø°Ù�Ù�</div>
+            <div id="messages">Ù�Ø±Ø­Ø¨Ø§Ù�! Ø£Ù�Ø§ Ù�Ø³Ø§Ø¹Ø¯Ù� Ø§Ù�ØªÙ�Ù�Ù�Ø� Ù�Ù�Ù� Ø£Ø³Ø§Ø¹Ø¯Ù� Ø§Ù�Ù�Ù�Ù�Ø�</div>
+            <div class="chat-i">
+
+<input type="text" id="userIn" placeholder="اكتب سؤالك...">
+                <button onclick="sendMsg()">إرسال</button>
+            </div>
+        </div>
+    </div><script>
+        /* JavaScript: محرك تشغيل الشات بوت */
+        function toggleChat() {
+            var box = document.getElementById('chat-box');
+            box.style.display = (box.style.display === 'none') ? 'flex' : 'none';}
+        function sendMsg() {
+            var input = document.getElementById('userIn');
+            var msgArea = document.getElementById('messages');
+            if(input.value.trim() !== "") {msgArea.innerHTML += "<div><b>أنت:</b> " + input.value + "</div>";
+                msgArea.innerHTML += "<div><b>البوت:</b> شكراً لسؤالك! سأقوم بالتحقق من " + input.value + " والرد عليك فوراً.</div>";
+                input.value = "";
+                msgArea.scrollTop = msgArea.scrollHeight;}
+        }
+    </script>
+</body>
+</html>

@@ -2,37 +2,72 @@
 <html dir="rtl" lang="ar">
 <head>
     <meta charset="UTF-8">
-    <title>IT Portal - Al-Qasemi</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>بوابة تكنولوجيا المعلومات - أكاديمية القاسمي</title>
     <style>
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; background-color: #f4f4f4; }
-        .header { background-color: #001f3f; color: white; padding: 20px; text-align: center; border-bottom: 5px solid #78bc42; }
-        .hero { background-color: #78bc42; color: white; padding: 40px; text-align: center; }
-        .container { padding: 20px; display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; }
-        .card { background: white; padding: 20px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); width: 250px; text-align: center; }
-        .btn { background-color: #001f3f; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px; display: inline-block; margin-top: 10px; }
+:root { --qasemi-green: #78bc42; --qasemi-blue: #001f3f; }
+        body { font-family: 'Segoe UI', Tahoma, sans-serif; margin: 0; background: #f4f7f6; color: #333; }
+        header { background: var(--qasemi-blue); color: white; padding: 20px; text-align: center; border-bottom: 6px solid var(--qasemi-green); }
+        .hero { background: var(--qasemi-green); color: white; padding: 30px; text-align: center; margin-bottom: 20px; }
+        .container { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; padding: 20px; max-width: 1200px; margin: auto; }
+        .card { background: white; padding: 25px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); text-align: center; transition: 0.3s; border-top: 4px solid var(--qasemi-blue); }
+        .card:hover { transform: translateY(-8px); }
+        .btn { background: var(--qasemi-blue); color: white; padding: 12px 25px; text-decoration: none; border-radius: 6px; display: inline-block; margin-top: 15px; font-weight: bold; }
+        .btn:hover { background: var(--qasemi-green); }
+/* Chatbot Style */
+        #chat-widget { position: fixed; bottom: 25px; right: 25px; z-index: 1000; }
+        #chat-button { background: var(--qasemi-green); color: white; width: 60px; height: 60px; border-radius: 50%; border: none; cursor: pointer; font-size: 24px; box-shadow: 0 4px 12px rgba(0,0,0,0.2); }
+        #chat-window { display: none; width: 320px; height: 400px; background: white; border-radius: 15px; box-shadow: 0 8px 25px rgba(0,0,0,0.2); position: absolute; bottom: 75px; right: 0; flex-direction: column; overflow: hidden; border: 1px solid #ddd; }
+        .chat-header { background: var(--qasemi-blue); color: white; padding: 15px; font-weight: bold; }
+        .chat-messages { flex: 1; padding: 15px; overflow-y: auto; font-size: 14px; background: #fafafa; }
+        .chat-input { display: flex; border-top: 1px solid #eee; }
+        .chat-input input { flex: 1; padding: 12px; border: none; outline: none; }
+        .chat-input button { background: var(--qasemi-green); color: white; border: none; padding: 10px 15px; cursor: pointer; }
+    </style>/* Chatbot Style */
+        #chat-widget { position: fixed; bottom: 25px; right: 25px; z-index: 1000; }
+        #chat-button { background: var(--qasemi-green); color: white; width: 60px; height: 60px; border-radius: 50%; border: none; cursor: pointer; font-size: 24px; box-shadow: 0 4px 12px rgba(0,0,0,0.2); }
+        #chat-window { display: none; width: 320px; height: 400px; background: white; border-radius: 15px; box-shadow: 0 8px 25px rgba(0,0,0,0.2); position: absolute; bottom: 75px; right: 0; flex-direction: column; overflow: hidden; border: 1px solid #ddd; }
+        .chat-header { background: var(--qasemi-blue); color: white; padding: 15px; font-weight: bold; }
+        .chat-messages { flex: 1; padding: 15px; overflow-y: auto; font-size: 14px; background: #fafafa; }
+        .chat-input { display: flex; border-top: 1px solid #eee; }
+        .chat-input input { flex: 1; padding: 12px; border: none; outline: none; }
+        .chat-input button { background: var(--qasemi-green); color: white; border: none; padding: 10px 15px; cursor: pointer; }
+    </style>.chat-input button { background: var(--qasemi-green); color: white; border: none; padding: 10px 15px; cursor: pointer; }
     </style>
 </head>
 <body>
-    <div class="header">
-        <h1>أكاديمية القاسمي - بوابة تكنولوجيا المعلومات</h1>
-    </div>
-    <div class="hero">
-        <h2>مرحباً بكم في نظام DevOps التعليمي</h2>
-        <p>هذا الموقع تم بناؤه ونشره تلقائياً باستخدام Docker و GitHub Actions</p>
-    </div>
+    <header><h1>بوابة الخدمات الرقمية - IT Portal</h1></header>
+    <div class="hero"><h2>مرحباً بك في الدعم الفني الذكي</h2><p>أكاديمية القاسمي - قسم الحوسبة</p></div>
     <div class="container">
-        <div class="card">
-            <h3>خدمات الطلاب</h3>
-            <a href="#" class="btn">دخول</a>
-        </div>
-        <div class="card">
-            <h3>البريد الإلكتروني</h3>
-            <a href="#" class="btn">دخول</a>
-        </div>
-        <div class="card">
-            <h3>نظام Moodle</h3>
-            <a href="#" class="btn">دخول</a>
+        <div class="card"><h3>خدمات الطلاب</h3><p>الوصول إلى المعلومات الشخصية والدرجات</p><a href="#" class="btn">دخول</a></div>
+        <div class="card"><h3>منظومة Moodle</h3><p>التعليم الإلكتروني والمواد الدراسية</p><a href="#" class="btn">دخول</a></div>
+        <div class="card"><h3>البريد الإلكتروني</h3><p>الدخول إلى بريد Outlook الأكاديمي</p><a href="#" class="btn">دخول</a></div>
+    </div>
+<div id="chat-widget">
+        <button id="chat-button" onclick="toggleChat()"></button>
+        <div id="chat-window"><div id="chat-widget">
+        <button id="chat-button" onclick="toggleChat()"></button>
+        <div id="chat-window"><div class="chat-header">الدعم الفني الذكي (AI)</div>
+            <div id="messages" class="chat-messages">مرحباً! أنا مساعدك التقني. كيف يمكنني مساعدتك اليوم؟</div>
+            <div class="chat-input">
+                <input type="text" id="userMsg" placeholder="اكتب سؤالك هنا...">
+                <button onclick="sendMsg()">إرسال</button></div>
         </div>
     </div>
+
+    <script>
+        function toggleChat() {
+            const win = document.getElementById('chat-window');
+            win.style.display = (win.style.display === 'flex') ? 'none' : 'flex';}
+        function sendMsg() {
+            const input = document.getElementById('userMsg');
+            const messages = document.getElementById('messages');
+            if(input.value.trim() !== "") {
+                messages.innerHTML += `<div style="color:blue; margin-bottom:10px;">أنت: ${input.value}</div>`;
+                messages.innerHTML += `<div style="color:green; margin-bottom:10px;">البوت: شكراً لسؤالك! جاري معالجة طلبك بخصوص ${input.value}...</div>`;
+                input.value = "";
+                messages.scrollTop = messages.scrollHeight;}
+        }
+    </script>
 </body>
 </html>
