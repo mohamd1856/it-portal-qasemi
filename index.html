@@ -3,24 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IT Portal | الصفحة الرئيسية</title>
+    <title>IT Portal | דף הבית</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="nav-container">
-        <a href="moodle.html" class="nav-btn">מעבר למערכת Moodle</a>
-    </div>
+    <nav class="top-nav">
+        <a href="moodle.html" class="nav-button">מעבר למערכת Moodle</a>
+    </nav>
 
-    <div class="chat-section">
-        <div class="chat-header">IT Support Assistant</div>
-        <div id="chat-box">
-            <div class="bot-msg">שלום! אני הבוט של IT. איך אוכל לעזור היום?</div>
+    <main class="container">
+        <div class="chat-card">
+            <div class="chat-header">IT Support Assistant</div>
+            <div id="chat-box" class="chat-display">
+                <div class="message bot">שלום! אני הבוט של IT. איך אוכל לעזור היום?</div>
+            </div>
+            <div class="chat-input-area">
+                <input type="text" id="user-input" placeholder="הקלד הודעה..." autocomplete="off">
+                <button id="send-btn" class="icon-btn">></button>
+            </div>
         </div>
-        <div class="input-area">
-            <input type="text" id="user-input" placeholder="הקלד הודעה..." autocomplete="off">
-            <button id="send-btn">שלח</button>
-        </div>
-    </div>
+    </main>
 
     <script src="script.js"></script>
 </body>

@@ -1,9 +1,195 @@
-body { font-family: sans-serif; background: #f4f7f9; display: flex; flex-direction: column; align-items: center; direction: rtl; padding: 20px; }
-.chat-section { background: white; width: 400px; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.1); overflow: hidden; }
-.chat-header { background: #6c63ff; color: white; padding: 15px; text-align: center; font-weight: bold; }
-#chat-box { height: 300px; padding: 15px; overflow-y: auto; display: flex; flex-direction: column; gap: 10px; }
-.user-msg { align-self: flex-start; background: #6c63ff; color: white; padding: 8px 12px; border-radius: 10px 10px 0 10px; }
-.bot-msg { align-self: flex-end; background: #e9ecef; color: #333; padding: 8px 12px; border-radius: 10px 10px 10px 0; }
-.input-area { display: flex; padding: 10px; border-top: 1px solid #eee; }
-input { flex: 1; padding: 8px; border: 1px solid #ddd; border-radius: 5px; }
-button { background: #6c63ff; color: white; border: none; padding: 8px 15px; margin-right: 5px; border-radius: 5px; cursor: pointer; }
+/* إعدادات عامة وتصفير المسافات */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%); /* خلفية متدرجة كما في الصورة */
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    direction: rtl;
+    padding: 20px;
+}
+
+/* شريط التنقل العلوي */
+.nav-container {
+    margin-bottom: 30px;
+}
+
+.nav-btn {
+    background: white;
+    color: #6c63ff;
+    padding: 10px 25px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: bold;
+    border: 2px solid #6c63ff;
+    transition: 0.3s;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+}
+
+.nav-btn:hover {
+    background: #6c63ff;
+    color: white;
+}
+
+/* بطاقة الدردشة الرئيسية */
+.chat-section {
+    background: white;
+    width: 100%;
+    max-width: 400px;
+    border-radius: 20px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.chat-header {
+    background: #6c63ff;
+    color: white;
+    padding: 20px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+
+#chat-box {
+    height: 350px;
+    padding: 20px;
+    overflow-y: auto;
+    background: #f8f9fa;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* فقاعات الرسائل */
+.message {
+    padding: 10px 15px;
+    border-radius: 15px;
+    max-width: 80%;
+    font-size: 0.95rem;
+    line-height: 1.4;
+}
+
+.bot-msg {
+    align-self: flex-end;
+    background: #e9ecef;
+    color: #333;
+    border-bottom-left-radius: 2px;
+}
+
+.user-msg {
+    align-self: flex-start;
+    background: #6c63ff;
+    color: white;
+    border-bottom-right-radius: 2px;
+}
+
+/* منطقة الإدخال في الدردشة */
+.input-area {
+    display: flex;
+    padding: 15px;
+    background: white;
+    border-top: 1px solid #eee;
+    gap: 10px;
+}
+
+.input-area input {
+    flex: 1;
+    border: 1px solid #ddd;
+    border-radius: 25px;
+    padding: 10px 15px;
+    outline: none;
+}
+
+.input-area button {
+    background: #6c63ff;
+    color: white;
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+/* --- تصميم نموذج MOODLE (حل مشكلة التداخل) --- */
+.form-card {
+    background: white;
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+    width: 100%;
+    max-width: 450px;
+}
+
+.form-card h2 {
+    margin-bottom: 25px;
+    color: #333;
+    text-align: center;
+}
+
+/* الحاوية التي تمنع التداخل */
+.input-group {
+    display: flex;
+    flex-direction: column; /* العناوين فوق الحقول دائماً */
+    align-items: flex-start;
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+.input-group label {
+    font-weight: bold;
+    margin-bottom: 8px;
+    color: #555;
+    font-size: 0.9rem;
+}
+
+.input-group input, 
+.input-group textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    font-size: 1rem;
+    outline: none;
+    transition: 0.3s;
+}
+
+.input-group input:focus {
+    border-color: #6c63ff;
+}
+
+.primary-btn {
+    width: 100%;
+    padding: 15px;
+    background: #6c63ff;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.primary-btn:hover {
+    background: #5a52d5;
+}
+
+.secondary-link {
+    display: block;
+    margin-top: 20px;
+    text-align: center;
+    color: #6c63ff;
+    text-decoration: none;
+    font-size: 0.9rem;
+}

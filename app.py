@@ -4,37 +4,40 @@ import os
 
 app = Flask(__name__, static_folder='.')
 
-# חיבור למסד הנתונים לפי ההגדרות ב-Docker Compose
-app.config["MONGO_URI"] = os.getenv("MONGO_URI", "mongodb://localhost:27017/it_portal")
+# إعدادات الاتصال بقاعدة البيانات MongoDB داخل Docker
+app.config["MONGO_URI"] = os.getenv("MONGO_URI", "mongodb://db:27017/it_portal")
 mongo = PyMongo(app)
 
-# הגשה של דפי ה-HTML
+# 1. مسار الصفحة الرئيسية (Chatbot)
 @app.route('/')
 def index():
     return send_from_directory('.', 'index.html')
 
+# 2. مسار صفحة Moodle (التأكد من توجيهها للملف الصحيح moodle.html)
+@app.route('/moodle')
+def moodle_page():
+    return send_from_directory('.', 'moodle.html')
+
+# 3. مسار الملفات الثابتة (CSS, JS, Images)
 @app.route('/<path:path>')
 def static_files(path):
     return send_from_directory('.', path)
 
-# נתיב לשמירת פנייה חדשה
+# 4. استقبال وحفظ طلبات الدعم (Tickets) في قاعدة البيانات
 @app.route('/send_ticket', methods=['POST'])
 def send_ticket():
     try:
         data = request.json
-        if not data.get('name') or not data.get('email'):
-            return jsonify({"error": "Missing fields"}), 400
-        
-        # שמירה ב-MongoDB
-        mongo.db.tickets.insert_one({
-            "name": data['name'],
-            "email": data['email'],
-            "description": data['description'],
-            "status": "חדש"
-        })
-        return jsonify({"message": "Ticket saved successfully!"}), 201
+        # التحقق من وجود البيانات الأساسية
+        if not data or 'name' not in data or 'email' not in data:
+            return jsonify({"status": "error", "message": "Missing fields"}), 400
+            
+        # إدراج البيانات في مجموعة tickets داخل MongoDB
+        mongo.db.tickets.insert_one(data)
+        return jsonify({"status": "success", "message": "Ticket saved"}), 201
     except Exception as e:
-        return jsonify({"error": str(e)}), 500
+        return jsonify({"status": "error", "message": str(e)}), 500
 
 if __name__ == '__main__':
+    # تشغيل السيرفر على جميع الواجهات لمنفذ 5000 داخل الحاوية
     app.run(host='0.0.0.0', port=5000)
