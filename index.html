@@ -3,60 +3,79 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>بوابة IT - أكاديمية القاسمي</title>
+    <title>IT Portal - Al-Qasemi</title>
     <style>
-:root { --q-blue: #001f3f; --q-green: #78bc42; }
-        body { font-family: 'Segoe UI', sans-serif; margin: 0; background: #f4f7f6; }
-        header { background: var(--q-blue); color: white; padding: 20px; text-align: center; border-bottom: 5px solid var(--q-green); }
-        .hero { background: var(--q-green); color: white; padding: 30px; text-align: center; }
+        :root { --q-blue: #001f3f; --q-green: #78bc42; }
+        body { font-family: sans-serif; margin: 0; background: #f4f7f6; }
+        header { background: var(--q-blue); color: white; padding: 25px; text-align: center; border-bottom: 5px solid var(--q-green); }
+        .hero { background: var(--q-green); color: white; padding: 15px; text-align: center; }
         .container { display: flex; justify-content: center; gap: 20px; padding: 40px; flex-wrap: wrap; }
-        .card { background: white; padding: 25px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); text-align: center; width: 250px; }
+        .card { background: white; padding: 25px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); text-align: center; width: 200px; }
         .btn { background: var(--q-blue); color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px; display: inline-block; margin-top: 15px; }
-#chat-widget { position: fixed; bottom: 20px; right: 20px; z-index: 1000; }
-        #chat-btn { background: var(--q-green); color: white; width: 60px; height: 60px; border-radius: 50%; border: none; cursor: pointer; font-size: 24px; box-shadow: 0 4px 10px rgba(0,0,0,0.3); }
-        #chat-box { display: none; width: 300px; height: 400px; background: white; border-radius: 10px; flex-direction: column; box-shadow: 0 5px 20px rgba(0,0,0,0.2); position: absolute; bottom: 75px; right: 0; border: 1px solid #ddd; }
-        .chat-head { background: var(--q-blue); color: white; padding: 15px; border-radius: 10px 10px 0 0; font-weight: bold; }
-        #messages { flex: 1; padding: 15px; overflow-y: auto; font-size: 14px; background: #fcfcfc; }
+        #chat-widget { position: fixed; bottom: 20px; left: 20px; z-index: 1000; }
+        #chat-btn { background: var(--q-green); color: white; width: 60px; height: 60px; border-radius: 50%; border: none; cursor: pointer; font-weight: bold; }
+        #chat-box { display: none; width: 320px; height: 450px; background: white; border-radius: 10px; flex-direction: column; box-shadow: 0 5px 20px rgba(0,0,0,0.2); position: absolute; bottom: 75px; left: 0; border: 1px solid #ddd; overflow: hidden; }
+        .chat-header { background: var(--q-blue); color: white; padding: 15px; text-align: center; font-weight: bold; }
+        #messages { flex: 1; padding: 15px; overflow-y: auto; display: flex; flex-direction: column; gap: 10px; font-size: 14px; }
         .chat-input { display: flex; border-top: 1px solid #eee; }
         .chat-input input { flex: 1; padding: 12px; border: none; outline: none; }
         .chat-input button { background: var(--q-green); color: white; border: none; padding: 10px 15px; cursor: pointer; }
     </style>
 </head>
 <body>
-    <header><h1>أكاديمية القاسمي - بوابة الخدمات الرقمية</h1></header>
-    <div class="hero"><h2>مرحباً بك في الدعم الفني الذكي</h2></div>
+    <header><h1>IT Portal - Al-Qasemi</h1></header>
+    <div class="hero">Digital Services Support</div>
     <div class="container">
-<div class="card"><h3>منظومة Moodle</h3><a href="#" class="btn">دخول</a></div>
-        <div class="card"><h3>البريد الأكاديمي</h3><a href="#" class="btn">دخول</a></div>
-        <div class="card"><h3>خدمات الطلاب</h3><a href="#" class="btn">دخول</a></div>
+        <div class="card"><h3>Students</h3><a href="#" class="btn">Login</a></div>
+        <div class="card"><h3>Email</h3><a href="#" class="btn">Login</a></div>
+        <div class="card"><h3>Moodle</h3><a href="#" class="btn">Login</a></div>
     </div>
-div id="chat-widget">
-        <button id="chat-btn" onclick="toggleChat()"></button>
+
+    <div id="chat-widget">
+        <button id="chat-btn" onclick="toggleChat()">CHAT</button>
         <div id="chat-box">
-            <div class="chat-head">الدعم الفني المباشر</div>
-            <div id="messages">مرحباً! كيف يمكنني مساعدتك في مشاكل الحاسوب اليوم؟</div>
+            <div class="chat-header">IT Support</div>
+            <div id="messages">Welcome! How can I help you?</div>
             <div class="chat-input">
-                <input type="text" id="userInput" placeholder="اكتب سؤالك هنا...">
-                <button onclick="sendMsg()">إرسال</button>
+                <input type="text" id="userInput" placeholder="Type here...">
+                <button onclick="sendMsg()">Send</button>
             </div>
         </div>
     </div>
-<script>
+
+    <script>
+        // وظيفة الفتح والإغلاق
         function toggleChat() {
             const box = document.getElementById('chat-box');
             box.style.display = (box.style.display === 'none' || box.style.display === '') ? 'flex' : 'none';
         }
-        function sendMsg() {
+
+        // وظيفة الإرسال والربط بالخادم
+        async function sendMsg() {
             const input = document.getElementById('userInput');
             const msgArea = document.getElementById('messages');
-            if(input.value.trim() !== "") {
-                msgArea.innerHTML += `<div style="margin-bottom:10px; color:blue;"><b>أنت:</b> ${input.value}</div>`;
-                msgArea.innerHTML += `<div style="margin-bottom:10px; color:green;"><b>البوت:</b> سأقوم بالتحقق من مسألة "${input.value}" فوراً.</div>`;
+            const userMsg = input.value.trim();
+
+            if(userMsg !== "") {
+                msgArea.innerHTML += `<div><b>أنت:</b> ${userMsg}</div>`;
                 input.value = "";
                 msgArea.scrollTop = msgArea.scrollHeight;
-}
+
+                try {
+                    // يحاول الاتصال بالخادم الذي يعمل في الخلفية
+                    const response = await fetch('http://localhost:5000/chat', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ message: userMsg })
+                    });
+                    const data = await response.json();
+                    msgArea.innerHTML += `<div style="color:green;"><b>البوت:</b> ${data.response}</div>`;
+                } catch (error) {
+                    msgArea.innerHTML += `<div style="color:red;"><b>خطأ:</b> الخادم غير متصل.</div>`;
+                }
+                msgArea.scrollTop = msgArea.scrollHeight;
+            }
         }
     </script>
 </body>
 </html>
-
