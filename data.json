@@ -1,11 +1,7 @@
 {
   "knowledge_base": [
     {
-      "keywords": ["hi", "hello", "שלום", "היי", "שלום"],
-      "answer": "Hello! How can I help you with Qasemi IT services? / שלום! איך אוכל לעזור לך בשירותי ה-IT?"
-    },
-    {
-      "keywords": ["calendar", "schedule", "לוח זמנים", "تقويم", "2025", "2026"],
+      "keywords": ["calendar", "לוח זמנים", "تقويم", "2025", "2026"],
       "answer": "You can find the academic calendar for 2025/2026 here: <a href='https://www.qsm.ac.il/%d8%a7%d9%84%d8%aa%d9%82%d9%88%d9%8a%d9%85-%d8%a7%d9%84%d8%b3%d9%86%d9%88%d9%8a/' target='_blank'>Academic Calendar 2025/2026</a>"
     },
     {
@@ -13,16 +9,8 @@
       "answer": "Login to Moodle here: <a href='https://moodle.qsm.ac.il' target='_blank'>Moodle Portal</a>"
     },
     {
-      "keywords": ["password", "סיסמה", "שחזור"],
-      "answer": "To reset your password, visit the <a href='https://portal.qsm.ac.il' target='_blank'>Student Portal</a> and click 'Forgot Password'."
-    },
-    {
-      "keywords": ["wifi", "internet", "אינטרנט"],
-      "answer": "Connect to 'QSM-Students' using your ID and portal password."
-    },
-    {
-      "keywords": ["support", "תמיכה", "עזרה"],
-      "answer": "You can open a support ticket here: <a href='support.html'>Support Page</a>"
+      "keywords": ["password", "סיסמה", "איפוס"],
+      "answer": "To reset your password, visit the <a href='https://portal.qsm.ac.il' target='_blank'>Student Portal</a>."
     }
   ]
 }

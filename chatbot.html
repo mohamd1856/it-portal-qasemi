@@ -2,67 +2,68 @@
 <html lang="he" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <title>IT Chatbot - מכללת קאסמי</title>
+    <title>IT Chatbot - Qasemi</title>
     <style>
-        body { font-family: sans-serif; background: #f4f7f6; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
-        .chat-card { width: 400px; height: 500px; background: white; border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.1); display: flex; flex-direction: column; }
-        .header { background: #6c63ff; color: white; padding: 15px; text-align: center; font-weight: bold; border-radius: 15px 15px 0 0; }
-        #messages { flex: 1; padding: 15px; overflow-y: auto; background: #fafafa; display: flex; flex-direction: column; gap: 10px; }
-        .msg { padding: 10px; border-radius: 10px; max-width: 80%; font-size: 14px; }
+        body { font-family: sans-serif; background: #f0f2f5; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
+        .chat-container { width: 400px; height: 550px; background: white; border-radius: 15px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); display: flex; flex-direction: column; overflow: hidden; }
+        .header { background: #6c63ff; color: white; padding: 15px; text-align: center; font-weight: bold; }
+        #chat-window { flex: 1; padding: 15px; overflow-y: auto; display: flex; flex-direction: column; gap: 10px; }
+        .bubble { padding: 10px 15px; border-radius: 15px; max-width: 80%; font-size: 14px; line-height: 1.4; }
         .bot { background: #e8e7ff; align-self: flex-start; }
         .user { background: #6c63ff; color: white; align-self: flex-end; }
-        .input-area { display: flex; padding: 10px; border-top: 1px solid #ddd; }
-        input { flex: 1; padding: 10px; border: 1px solid #ddd; border-radius: 5px; outline: none; }
-        button { background: #6c63ff; color: white; border: none; padding: 10px; margin-left: 5px; cursor: pointer; border-radius: 5px; }
+        .bubble a { color: #0056b3; font-weight: bold; text-decoration: underline; }
+        .quick-replies { padding: 10px; display: flex; gap: 5px; justify-content: center; border-top: 1px solid #eee; }
+        .quick-btn { background: #f0f0f0; border: 1px solid #ddd; padding: 5px 10px; border-radius: 15px; cursor: pointer; font-size: 12px; }
+        .input-area { display: flex; padding: 10px; border-top: 1px solid #eee; }
+        input { flex: 1; padding: 10px; border: 1px solid #ddd; border-radius: 20px; outline: none; }
+        button#send { background: #6c63ff; color: white; border: none; padding: 8px 15px; border-radius: 20px; cursor: pointer; margin-right: 5px; }
     </style>
 </head>
 <body>
-    <div class="chat-card">
+    <div class="chat-container">
         <div class="header">תמיכה טכנית חכמה - קאסמי</div>
-        <div id="messages">
-            <div class="msg bot">שלום! אני הבוט של IT. איך אוכל לעזור?</div>
+        <div id="chat-window"></div>
+        <div class="quick-replies">
+            <button class="quick-btn" onclick="quickAsk('moodle')">Moodle</button>
+            <button class="quick-btn" onclick="quickAsk('סיסמה')">איפוס סיסמה</button>
+            <button class="quick-btn" onclick="quickAsk('לוח זמנים')">לוח זמנים</button>
         </div>
         <div class="input-area">
-            <input type="text" id="userInput" placeholder="שאל אותי משהו (סיסמה, מודל...)" onkeypress="if(event.key==='Enter') askBot()">
-            <button onclick="askBot()">שלח</button>
+            <input type="text" id="userInput" placeholder="כתוב שאלה...">
+            <button id="send" onclick="askBot()">שלח</button>
         </div>
-        <a href="index.html" style="text-align:center; padding: 5px; font-size: 12px; color: #888; text-decoration: none;">חזרה לבית</a>
     </div>
-
     <script>
         let qaData = { "knowledge_base": [] };
+        fetch('data.json').then(r => r.json()).then(d => qaData = d);
 
-        // جلب البيانات من ملف JSON
-        fetch('data.json')
-            .then(response => response.json())
-            .then(data => qaData = data)
-            .catch(err => console.error("שגיאה בטעינת הנתונים:", err));
+        function quickAsk(w) { document.getElementById('userInput').value = w; askBot(); }
 
         function askBot() {
-            const input = document.getElementById('userInput');
-            const msgDiv = document.getElementById('messages');
-            const val = input.value.trim().toLowerCase();
+            const inp = document.getElementById('userInput');
+            const val = inp.value.trim().toLowerCase().replace(/[?.,!]/g, "");
             if(!val) return;
 
-            // رسالة المستخدم
-            msgDiv.innerHTML += `<div class="msg user">${input.value}</div>`;
-            
-            let response = "מצטער, אני לא מכיר את התשובה. נסה לשאול על סיסמה או מודל.";
+            addMsg(inp.value, 'user');
+            inp.value = '';
 
-            // البحث في قاعدة البيانات
+            let res = "מצטער, לא מצאתי תשובה מתאימה.";
             for (let item of qaData.knowledge_base) {
-                if (item.keywords.some(key => val.includes(key.toLowerCase()))) {
-                    response = item.answer;
+                if (item.keywords.some(k => val.includes(k.toLowerCase()))) {
+                    res = item.answer;
                     break;
                 }
             }
+            setTimeout(() => addMsg(res, 'bot'), 400);
+        }
 
-            // رد البوت بعد تأخير بسيط
-            setTimeout(() => {
-                msgDiv.innerHTML += `<div class="msg bot">${response}</div>`;
-                input.value = '';
-                msgDiv.scrollTop = msgDiv.scrollHeight;
-            }, 500);
+        function addMsg(t, s) {
+            const win = document.getElementById('chat-window');
+            const div = document.createElement('div');
+            div.className = `bubble ${s}`;
+            div.innerHTML = t; //
+            win.appendChild(div);
+            win.scrollTop = win.scrollHeight;
         }
     </script>
 </body>
