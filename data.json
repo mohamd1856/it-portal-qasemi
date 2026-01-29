@@ -2,15 +2,15 @@
   "knowledge_base": [
     {
       "keywords": ["calendar", "לוח זמנים", "تقويم", "2025", "2026"],
-      "answer": "You can find the academic calendar for 2025/2026 here: <a href='https://www.qsm.ac.il/%d8%a7%d9%84%d8%aa%d9%82%d9%88%d9%8a%d9%85-%d8%a7%d9%84%d8%b3%d9%86%d9%88%d9%8a/' target='_blank'>Academic Calendar 2025/2026</a>"
+      "answer": "לוח זמנים אקדמי לשנת 2025/2026: <a href='https://www.qsm.ac.il/%d8%a7%d9%84%d8%aa%d9%82%d9%88%d9%8a%d9%85-%d8%a7%d9%84%d8%b3%d9%86%d9%88%d9%8a/' target='_blank'>לחץ כאן לצפייה</a>"
     },
     {
       "keywords": ["moodle", "מודל", "כניסה"],
-      "answer": "Login to Moodle here: <a href='https://moodle.qsm.ac.il' target='_blank'>Moodle Portal</a>"
+      "answer": "כניסה למערכת המודל: <a href='https://moodle.qsm.ac.il' target='_blank'>Moodle Portal</a>"
     },
     {
-      "keywords": ["password", "סיסמה", "איפוס"],
-      "answer": "To reset your password, visit the <a href='https://portal.qsm.ac.il' target='_blank'>Student Portal</a>."
+      "keywords": ["סיסמה", "password", "איפוס"],
+      "answer": "לאיפוס סיסמה, יש להיכנס ל<a href='https://portal.qsm.ac.il' target='_blank'>פורטל הסטודנט</a> וללחוץ על 'שכחתי סיסמה'."
     }
   ]
 }

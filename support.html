@@ -2,36 +2,23 @@
 <html lang="he" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <title>Support - פתיחת קריאה</title>
+    <title>פתיחת קריאת שירות</title>
     <style>
-        body { font-family: 'Segoe UI', sans-serif; background-color: #eef2f7; display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; }
-        .support-card { background: white; padding: 40px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); width: 100%; max-width: 450px; text-align: center; }
-        .input-group { text-align: right; margin-bottom: 20px; }
-        label { display: block; margin-bottom: 8px; font-weight: bold; }
-        input, textarea { width: 100%; padding: 12px; border: 1.5px solid #ddd; border-radius: 10px; box-sizing: border-box; }
-        button { width: 100%; padding: 15px; background-color: #6c63ff; color: white; border: none; border-radius: 10px; cursor: pointer; font-size: 18px; }
-        .back-link { display: block; margin-top: 20px; color: #888; text-decoration: none; }
+        body { font-family: sans-serif; background: #f0f2f5; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
+        .form-container { background: white; padding: 30px; border-radius: 15px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); width: 400px; text-align: center; }
+        input, textarea { width: 100%; padding: 12px; margin: 10px 0; border: 1px solid #ddd; border-radius: 8px; box-sizing: border-box; }
+        .submit-btn { background: #6c63ff; color: white; border: none; padding: 15px; width: 100%; border-radius: 10px; cursor: pointer; font-weight: bold; }
+        .back-link { display: block; margin-top: 15px; color: #777; text-decoration: none; font-size: 14px; }
     </style>
 </head>
 <body>
-    <div class="support-card">
+    <div class="form-container">
         <h2>פתיחת קריאת שירות (Support)</h2>
-        <form>
-            <div class="input-group">
-                <label>שם מלא:</label>
-                <input type="text" placeholder="הכנס שם" required>
-            </div>
-            <div class="input-group">
-                <label>אימייל:</label>
-                <input type="email" placeholder="user@qsm.ac.il" required>
-            </div>
-            <div class="input-group">
-                <label>תיאור הבעיה:</label>
-                <textarea rows="4" placeholder="פרט כאן..."></textarea>
-            </div>
-            <button type="submit">שלח קריאה</button>
-            <a href="index.html" class="back-link">חזרה לדף הבית</a>
-        </form>
+        <input type="text" placeholder="שם מלא">
+        <input type="email" placeholder="אימייל">
+        <textarea placeholder="תיאור הבעיה" rows="4"></textarea>
+        <button class="submit-btn">שלח קריאה</button>
+        <a href="chatbot.html" class="back-link">חזרה לדף הבית</a>
     </div>
 </body>
 </html>
