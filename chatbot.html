@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chatbot חכם - IT Support</title>
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; background-color: #f0f2f5; display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; }
+        .chat-container { width: 100%; max-width: 500px; background: white; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); overflow: hidden; display: flex; flex-direction: column; height: 600px; }
+        .chat-header { background: #6c63ff; color: white; padding: 20px; text-align: center; font-size: 1.2rem; font-weight: bold; }
+        #chat-window { flex: 1; padding: 20px; overflow-y: auto; display: flex; flex-direction: column; gap: 10px; background: #f9f9f9; }
+        .msg { padding: 12px 18px; border-radius: 15px; max-width: 80%; font-size: 15px; line-height: 1.4; }
+        .bot { background: #e8e7ff; align-self: flex-start; color: #333; border-bottom-right-radius: 2px; }
+        .user { background: #6c63ff; color: white; align-self: flex-end; border-bottom-left-radius: 2px; }
+        .input-area { padding: 15px; display: flex; gap: 10px; border-top: 1px solid #eee; }
+        input { flex: 1; padding: 12px; border: 1px solid #ddd; border-radius: 25px; outline: none; }
+        button { background: #6c63ff; color: white; border: none; padding: 10px 20px; border-radius: 25px; cursor: pointer; font-weight: bold; }
+        .back-link { text-align: center; padding: 10px; font-size: 13px; color: #888; text-decoration: none; background: #fff; }
+    </style>
+</head>
+<body>
+
+<div class="chat-container">
+    <div class="chat-header">תמיכה טכנית חכמה - קאסמי</div>
+    <div id="chat-window">
+        <div class="msg bot">שלום! אני הבוט של מחלקת ה-IT. איך אפשר לעזור? (נסה לשאול על סיסמה, מודל או אינטרנט)</div>
+    </div>
+    <div class="input-area">
+        <input type="text" id="user-input" placeholder="הקלד שאלה כאן..." onkeypress="if(event.key === 'Enter') sendMessage()">
+        <button onclick="sendMessage()">שלח</button>
+    </div>
+    <a href="index.html" class="back-link">חזרה לדף הבית</a>
+</div>
+
+<script>
+    const chatWindow = document.getElementById('chat-window');
+    
+    // "המוח" של הבוט - רשימת תשובות חכמה
+    const brain = {
+        "שלום": "שלום רב! במה אוכל לסייע לך היום?",
+        "סיסמה": "לשחזור סיסמה במערכות המכללה, יש להיכנס לפורטל הסטודנט וללחוץ על 'שכחתי סיסמה' או לפנות למזכירות.",
+        "מודל": "מערכת המודל (Moodle) זמינה בכתובת moodle.qsm.ac.il. אם יש תקלה בהתחברות, וודא שאתה משתמש בתעודת זהות וסיסמה עדכנית.",
+        "moodle": "מערכת המודל (Moodle) זמינה בכתובת moodle.qsm.ac.il. אם יש תקלה בהתחברות, וודא שאתה משתמש בתעודת זהות וסיסמה עדכנית.",
+        "אינטרנט": "לחיבור ל-Wi-Fi במכללה, השתמש ברשת QSM-STUDENT עם פרטי ההתחברות האישיים שלך.",
+        "מייל": "תיבת המייל המכללתית שלך היא בפורמט username@qsm.ac.il. ניתן לגשת אליה דרך Gmail.",
+        "תודה": "בשמחה! תמיד כאן בשבילך.",
+        "עזרה": "אני יכול לעזור בנושאי מודל, סיסמאות, חיבור לאינטרנט ותקלות טכניות כלליות."
+    };
+
+    function sendMessage() {
+        const input = document.getElementById('user-input');
+        const text = input.value.trim();
+        if (!text) return;
+
+        addMessage(text, 'user');
+        input.value = '';
+
+        // חיפוש תשובה חכמה
+        setTimeout(() => {
+            let response = "מצטער, אני עדיין לומד. אולי כדאי לפתוח קריאת שירות בדף ה-Support?";
+            
+            for (let key in brain) {
+                if (text.toLowerCase().includes(key)) {
+                    response = brain[key];
+                    break;
+                }
+            }
+            addMessage(response, 'bot');
+        }, 500);
+    }
+
+    function addMessage(text, side) {
+        const div = document.createElement('div');
+        div.className = `msg ${side}`;
+        div.innerText = text;
+        chatWindow.appendChild(div);
+        chatWindow.scrollTop = chatWindow.scrollHeight;
+    }
+</script>
+
+</body>
+</html>

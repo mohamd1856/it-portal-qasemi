@@ -1,195 +1,67 @@
-/* إعدادات عامة وتصفير المسافات */
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
-
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%); /* خلفية متدرجة كما في الصورة */
-    min-height: 100vh;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background-color: #f0f2f5;
     display: flex;
-    flex-direction: column;
-    align-items: center;
     justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
     direction: rtl;
-    padding: 20px;
 }
 
-/* شريط التنقل العلوي */
-.nav-container {
-    margin-bottom: 30px;
-}
-
-.nav-btn {
-    background: white;
-    color: #6c63ff;
-    padding: 10px 25px;
-    border-radius: 30px;
-    text-decoration: none;
-    font-weight: bold;
-    border: 2px solid #6c63ff;
-    transition: 0.3s;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-}
-
-.nav-btn:hover {
-    background: #6c63ff;
-    color: white;
-}
-
-/* بطاقة الدردشة الرئيسية */
-.chat-section {
-    background: white;
-    width: 100%;
-    max-width: 400px;
-    border-radius: 20px;
-    box-shadow: 0 15px 35px rgba(0,0,0,0.1);
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-}
-
-.chat-header {
-    background: #6c63ff;
-    color: white;
-    padding: 20px;
-    text-align: center;
-    font-weight: bold;
-    font-size: 1.1rem;
-}
-
-#chat-box {
-    height: 350px;
-    padding: 20px;
-    overflow-y: auto;
-    background: #f8f9fa;
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-}
-
-/* فقاعات الرسائل */
-.message {
-    padding: 10px 15px;
-    border-radius: 15px;
-    max-width: 80%;
-    font-size: 0.95rem;
-    line-height: 1.4;
-}
-
-.bot-msg {
-    align-self: flex-end;
-    background: #e9ecef;
-    color: #333;
-    border-bottom-left-radius: 2px;
-}
-
-.user-msg {
-    align-self: flex-start;
-    background: #6c63ff;
-    color: white;
-    border-bottom-right-radius: 2px;
-}
-
-/* منطقة الإدخال في الدردشة */
-.input-area {
-    display: flex;
-    padding: 15px;
-    background: white;
-    border-top: 1px solid #eee;
-    gap: 10px;
-}
-
-.input-area input {
-    flex: 1;
-    border: 1px solid #ddd;
-    border-radius: 25px;
-    padding: 10px 15px;
-    outline: none;
-}
-
-.input-area button {
-    background: #6c63ff;
-    color: white;
-    border: none;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    cursor: pointer;
-    font-weight: bold;
-}
-
-/* --- تصميم نموذج MOODLE (حل مشكلة التداخل) --- */
+/* כרטיס הטופס המרכזי */
 .form-card {
     background: white;
-    padding: 30px;
+    padding: 40px;
     border-radius: 20px;
-    box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
     width: 100%;
     max-width: 450px;
 }
 
-.form-card h2 {
-    margin-bottom: 25px;
-    color: #333;
+h2 {
     text-align: center;
+    color: #333;
+    margin-bottom: 30px;
 }
 
-/* الحاوية التي تمنع التداخل */
+/* סידור השדות אחד מתחת לשני - פותר את בעיית הפיזור */
 .input-group {
     display: flex;
-    flex-direction: column; /* العناوين فوق الحقول دائماً */
-    align-items: flex-start;
+    flex-direction: column;
     margin-bottom: 20px;
-    width: 100%;
 }
 
 .input-group label {
     font-weight: bold;
     margin-bottom: 8px;
     color: #555;
-    font-size: 0.9rem;
+    text-align: right;
 }
 
-.input-group input, 
-.input-group textarea {
-    width: 100%;
+.input-group input, .input-group textarea {
     padding: 12px;
     border: 1px solid #ddd;
     border-radius: 10px;
-    font-size: 1rem;
-    outline: none;
-    transition: 0.3s;
+    font-size: 16px;
+    width: 100%;
+    box-sizing: border-box; /* חשוב למניעת חריגה מהמסגרת */
 }
 
-.input-group input:focus {
-    border-color: #6c63ff;
-}
-
+/* הכפתור הסגול המעוצב */
 .primary-btn {
     width: 100%;
     padding: 15px;
-    background: #6c63ff;
+    background-color: #6c63ff;
     color: white;
     border: none;
-    border-radius: 10px;
-    font-size: 1.1rem;
+    border-radius: 12px;
+    font-size: 18px;
     font-weight: bold;
     cursor: pointer;
-    margin-top: 10px;
+    transition: 0.3s;
 }
 
 .primary-btn:hover {
-    background: #5a52d5;
-}
-
-.secondary-link {
-    display: block;
-    margin-top: 20px;
-    text-align: center;
-    color: #6c63ff;
-    text-decoration: none;
-    font-size: 0.9rem;
+    background-color: #5a52d5;
 }
