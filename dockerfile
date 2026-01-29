@@ -1,6 +1,8 @@
-FROM python:3.9-slim
-WORKDIR /app
-COPY requirements.txt .
-RUN pip install -r requirements.txt
-COPY . .
-CMD ["python", "app.py"]
+# שימוש בשרת אינטרנט קל ומקצועי
+FROM nginx:alpine
+
+# העתקת כל קבצי האתר לתיקייה שהשרת קורא ממנה
+COPY . /usr/share/nginx/html
+
+# חשיפת פורט 80 (סטנדרט לאתרי אינטרנט)
+EXPOSE 80
